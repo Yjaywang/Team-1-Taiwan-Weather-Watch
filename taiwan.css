@@ -1,0 +1,21 @@
+#default_map svg {
+    max-width: 100%;
+    width: 448.59px;
+    height: 560px;
+}
+#default_map svg a {
+    cursor: pointer;
+}
+#default_map svg a.is-active path {
+    fill: #d0a6f5;
+}
+#default_map svg path {
+    fill: #d0a6f5;
+    stroke: #197ac9;
+    stroke-width: 1px;
+    stroke-miterlimit: 10;
+    stroke-dashoffset: 0 !important;
+}
+#default_map svg path:hover {
+    fill: rgba(193, 29, 29, 0.4);
+}

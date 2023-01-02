@@ -1,0 +1,88 @@
+#default_map svg path:hover {
+    fill:   #00FF00;
+}
+body{
+    margin: 50px auto;
+    background-color: #202020;
+}
+p{
+    color: #00FF00;
+}
+#default_map{
+    margin: 0 auto;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-around;
+}
+#leftInformation{
+    display: grid;
+    grid-template-areas: 
+    'header header header button'
+    'main main main main'
+    'left left right right';
+    gap: 10px;
+    width: 500px;
+}
+#leftInformation :hover{
+    opacity: 0.8;
+}
+
+.header { grid-area: header; }
+#toggleButton { grid-area: button; }
+.today { grid-area: main; }
+.tomorrow { grid-area: left; }
+.later { grid-area: right; }
+
+.header{
+    background-color: #101010;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    font-size: 28px;
+    border-radius: 10px;
+}
+.today{
+    background-color: #101010;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 300px;
+    font-size: 22px;
+    border-radius: 10px;
+}
+.todayLeft{
+    text-align: center;
+    flex: 60%;
+    
+}
+.todayLeft>img{
+    width: 130px;
+}
+.todayRight{
+    text-align: center;
+    flex: 40%;
+}
+.tomorrow{
+    background-color: #101010;
+    text-align: center;
+    width: 245px;
+    height: 200px;
+    border-radius: 10px;
+
+}
+.tomorrow>img{
+    width: 87px;
+}
+.later{
+    background-color: #101010;
+    text-align: center;
+    width: 245px;
+    height: 200px;
+    border-radius: 10px;
+
+}
+.later>img{
+    width: 87px;
+}

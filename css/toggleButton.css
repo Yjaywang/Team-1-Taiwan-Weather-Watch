@@ -1,0 +1,56 @@
+#toggleButton{
+    position: relative;
+    background-color: #fff;
+    width: 60px;
+    height: 30px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+#toggleButton .button{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    background-color: black;
+    border-radius: 50%;
+    transform: scale(0.7);
+    transition: 0.5s;
+}
+#toggleButton.light{
+    background-color: #101010;
+}
+#toggleButton.light .button{
+    background-color: #fff;
+    left: 30px;
+    transition: 0.5s;
+
+}
+body.light {
+    background-color: #fff;
+    transition: 0.5s;
+}
+body.light #default_map svg path:hover {
+    fill:   #197ac9;
+}
+body.light p{
+    color: #197ac9;
+    transition: 0.5s;
+}
+body.light .header{
+    background-color: #d0a6f5;
+    color: #197ac9;
+    transition: 0.5s;
+}
+body.light .today{
+    background-color: #d0a6f5;
+    transition: 0.5s;
+}body.light .tomorrow{
+    background-color: #d0a6f5;
+    color: #197ac9;
+    transition: 0.5s;
+}body.light .later{
+    background-color: #d0a6f5;
+    color: #197ac9;
+    transition: 0.5s;
+}

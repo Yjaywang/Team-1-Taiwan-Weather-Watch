@@ -16,6 +16,4 @@
     stroke-miterlimit: 10;
     stroke-dashoffset: 0 !important;
 }
-#default_map svg path:hover {
-    fill: rgba(193, 29, 29, 0.4);
-}
+

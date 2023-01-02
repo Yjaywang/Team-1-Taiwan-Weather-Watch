@@ -5,13 +5,45 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="taiwan.css" />
-
+        <link rel="stylesheet" type="text/css" href="css/left.css" />
+        <link rel="stylesheet" type="text/css" href="css/toggleButton.css" />
         <title>Document</title>
     </head>
     <body>
         <!-- svg map -->
         <div class="cube_map hidden-sm hidden-xs">
             <div id="default_map" class="map_theme">
+                <!-- 左邊資訊 -->
+                <div id="leftInformation">
+                    <div class="header"><p>Team 1 Taiwan Weather Watch</p></div>
+                    <div id="toggleButton" onclick="toggle()";>
+                        <i class="button"  ></i>
+                    </div>
+                    <div class="today">
+                        <div class="todayLeft">
+                            <p class="city">台北市 &nbsp;&nbsp;&nbsp;
+                                <span class="date"></span>
+                            </p>
+                            <img src="img/windy_icon.png">
+                        </div>
+                        <div class="todayRight">
+                            <p>今天天氣</p>
+                            <p>16°-17°</p>
+                        </div>
+                        <div class="icon">
+                        </div>
+                    </div>
+                    <div class="tomorrow">
+                        <p>明天天氣</p>
+                        <img src="img/windy_icon-1.png">
+                        <p>16°-17°</p>
+                    </div>
+                    <div class="later">
+                        <p>12小時預報</p>
+                        <img src="img/windy_icon-2.png">
+                        <p>16°-17°</p>
+                    </div>
+                </div>
                 <div class="weather_time"></div>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +87,7 @@
                     </a>
                     <!-- ======================= end 新北市  ======================= -->
                     <!-- ======================= 台北市  ======================= -->
-                    <a xlink:href="javascript:void(0)" class="is-active">
+                    <a xlink:href="javascript:void(0)">
                         <g id="C63">
                             <desc>台北市區域</desc>
                             <path
@@ -395,19 +427,12 @@
                     <!-- ======================= end 連江縣 ======================= -->
                     <g id="position" transform="translate(288 30)">
                         <g class="icon-in">
-                            <desc>座標圖示</desc>
-                            <path
-                                d="M16,0C9.4,0,4.1,5.3,4.1,11.9S16,32,16,32s11.9-13.5,11.9-20.1C27.9,5.3,22.6,0,16,0z M16,18.7c-3.7,0-6.8-3-6.8-6.8
-      s3-6.8,6.8-6.8s6.8,3,6.8,6.8S19.7,18.7,16,18.7z"
-                            />
-                            <path
-                                d="M20.1,11.9c0,2.2-1.8,4.1-4.1,4.1s-4.1-1.8-4.1-4.1c0-2.2,1.8-4.1,4.1-4.1S20.1,9.7,20.1,11.9z"
-                            />
                         </g>
                     </g>
                 </svg>
             </div>
         </div>
         <!-- End svg map -->
+        <script src="js/chunYi.js"></script>
     </body>
 </html>

@@ -1,12 +1,12 @@
-const date=document.querySelector(".date")
-const today=new Date();
+const date = document.querySelector(".date")
+const today = new Date()
 
 // 當下日期
+
 function getDatetime(){
     date.innerHTML=(today.getMonth()+1) + " 月 " + today.getDate() + " 日 "
 };
-// 進入網頁執行
-getDatetime();
+
 
 // 切換
 const toggleButton=document.querySelector('#toggleButton');
@@ -18,3 +18,4 @@ function toggle(){
     nav.classList.toggle('light');
     $(".background_image_1").toggle();
 }
+

@@ -4,15 +4,18 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" type="text/css" href="taiwan.css" />
+        <link rel="stylesheet" type="text/css" href="css/taiwan.css" />
         <link rel="stylesheet" type="text/css" href="css/left.css" />
         <link rel="stylesheet" type="text/css" href="css/toggleButton.css" />
-        <title>Document</title>
+        <title>Team 1 Taiwan Weather Watch</title>
     </head>
     <body>
-        <!-- svg map -->
-        <div class="cube_map hidden-sm hidden-xs">
-            <div id="default_map" class="map_theme">
+        <div class="nav">
+            <img src="https://cdn0.iconfinder.com/data/icons/weather-888/32/weather_wind_air_cloud_sky-128.png" class="nav_image">
+            <div class="title">Weather Forecast</div> 
+        </div>
+        <div class="index_container">
+            <div id="default_map">
                 <!-- 左邊資訊 -->
                 <div id="leftInformation">
                     <div class="header"><p>Team 1 Taiwan Weather Watch</p></div>
@@ -45,6 +48,7 @@
                     </div>
                 </div>
                 <div class="weather_time"></div>
+            <!-- svg map -->
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     x="0px"
@@ -430,9 +434,14 @@
                         </g>
                     </g>
                 </svg>
+            <!-- End svg map -->
             </div>
+            <img src="https://www.cwb.gov.tw/V8/assets/img/home/jumbotron_cloud_pattern_l1.png" class="background_image_1">
+            <img src="https://www.cwb.gov.tw/V8/assets/img/home/jumbotron_cloud_pattern_l2.png" class="background_image_1" style="z-index: -15;bottom: 50px">
         </div>
-        <!-- End svg map -->
         <script src="js/chunYi.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     </body>
 </html>
+
+

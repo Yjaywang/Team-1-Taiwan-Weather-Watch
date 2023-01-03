@@ -1,7 +1,6 @@
 #default_map svg {
-    max-width: 100%;
-    width: 448.59px;
-    height: 560px;
+    width: 500px;
+    height: 580px;
 }
 #default_map svg a {
     cursor: pointer;
@@ -16,4 +15,14 @@
     stroke-miterlimit: 10;
     stroke-dashoffset: 0 !important;
 }
+
+@media (max-width: 1250px) {
+    #default_map svg {
+        width: 50%;
+    }
+
+}
+
+
+
 

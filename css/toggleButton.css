@@ -1,4 +1,4 @@
-#toggleButton{
+.toggleButton{
     position: relative;
     background-color: #d0a6f5;
     width: 60px;
@@ -6,7 +6,8 @@
     border-radius: 50px;
     cursor: pointer;
 }
-#toggleButton .button{
+
+.toggleButton .button{
     position: absolute;
     top: 0;
     left: 0;
@@ -17,10 +18,10 @@
     transform: scale(0.7);
     transition: 0.5s;
 }
-#toggleButton.light{
+.toggleButton.light{
     background-color: #2994eb;
 }
-#toggleButton.light .button{
+.toggleButton.light .button{
     background-color: #fff;
     left: 30px;
     transition: 0.5s;
@@ -58,4 +59,12 @@ body.light .today{
     background-color: #d0a6f5;
     color: #197ac9;
     transition: 0.5s;
+}
+
+/* -----------------------screen 1250px */
+
+@media screen and (max-width: 1250px) {
+    .toggleButton{
+        display: none;
+    }
 }

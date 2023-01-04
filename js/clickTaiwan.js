@@ -1,3 +1,29 @@
+//更改鄉鎮選單
+function getTowns(){
+    let option = document.querySelectorAll("option");
+    if(option.length > 2 ){
+        console.log(1)
+        let select = document.querySelector("select");
+        for(x=2; x <option.length; x++){
+            select.removeChild(option[x])
+        }
+    };
+    let location = $(".city").text();
+    const TownsAmount = cityDistList[location].length
+    let fragment = document.createDocumentFragment();
+    for(x=1; x<TownsAmount; x++){
+        $("option:last").html(cityDistList[location][0]);
+        $("option:last").clone().html(cityDistList[location][x]).appendTo(fragment)
+    };
+    document.querySelector(".town_meun").appendChild(fragment)
+}
+//開網頁偵測地區更動鄉鎮市選單
+window.onload = ()=>{
+    getTowns()
+};
+
+
+//clickTaiwan
 const htmlIDToApiID={
     "C10017":"049",
     "C65":"069",
@@ -78,8 +104,15 @@ htmlIDs.forEach(htmlID => {
     const regionEl=document.querySelector(`#${htmlID}`);
     regionEl.addEventListener("click", async function() {
         //fetch information function
+        let oldPathChosed = $("#chosed")[0];
+        oldPathChosed.removeAttribute("style","fill: red");
+        oldPathChosed.removeAttribute("id");
+        let newPathChosed = regionEl.querySelector("path");
+        newPathChosed.setAttribute("style","fill: #00c0fb");
+        newPathChosed.setAttribute("id","chosed");
         goToPosition(this.id);
         getDescContents(this.id);
+        getTowns();
     });
     function goToPosition(htmlID) {
         const positionEl=document.querySelector("#position");

@@ -1,0 +1,55 @@
+#chart_window {
+    position: absolute;
+    max-width: 1200px;
+    width: 95%;
+    z-index: 99;
+    left: 50%;
+    transform: translate(-50%, 0);
+    display: none;
+}
+.chart_window_header{
+    display: flex;
+    border-radius: 10px;
+    width: 100%;
+    height: 50px;
+    z-index: 2;
+}
+
+.chart_window_header :hover{
+    cursor: pointer;
+}
+.chart_window_header_background{
+    position: absolute;
+    background-color: rgba(64, 83, 101, 0.95);
+    border-radius: 10px;
+    width: 100%;
+    height: 50px;
+    top: 0;
+    z-index: -1;
+    display: none;
+}
+#tab_3hr_table, #tab_weeks, #tab_body{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    color: #00FF00;
+
+}
+#tab_3hr_table{
+    border-radius: 10px 0 0 10px;
+}
+#tab_body{
+    border-radius: 0 10px 10px 0;
+}
+
+.highcharts{
+    background-color: #fff;
+    height: 500px;
+    border-radius: 10px;
+}
+.highlighted {
+    border: 3px solid #00FF00;
+    background-color: #202020;
+  }

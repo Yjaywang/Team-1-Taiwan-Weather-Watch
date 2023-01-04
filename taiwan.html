@@ -7,6 +7,7 @@
         <link rel="stylesheet" type="text/css" href="css/taiwan.css" />
         <link rel="stylesheet" type="text/css" href="css/left.css" />
         <link rel="stylesheet" type="text/css" href="css/toggleButton.css" />
+        <link rel="stylesheet" type="text/css" href="css/chartWindow.css" />
         <title>Team 1 Taiwan Weather Watch</title>
     </head>
     <body>
@@ -14,6 +15,20 @@
             <img src="https://cdn0.iconfinder.com/data/icons/weather-888/32/weather_wind_air_cloud_sky-128.png" class="nav_image">
             <div class="title">Weather Forecast</div>
         </div>
+        <!-- 彈出視窗 -->
+        <div id="chart_window">
+            <div class="chart_window_header">
+                <div id="tab_3hr_table" class="tab_chart_window_header" title="逐三小時天氣預報詳細資料">逐3小時預報</div>
+                <div id="tab_weeks" class="tab_chart_window_header" title="一週溫度曲線">一週溫度曲線</div>
+                <div id="tab_body" class="tab_chart_window_header" title="一週體感溫度曲線">一週體感溫度曲線</div>
+            </div>
+            <!-- class="chart_window_header的底色 -->
+            <div class="chart_window_header_background"></div>
+            <!-- 曲線圖的位置 -->
+            <div class="highcharts"></div>
+        </div>
+        <!-- 彈出視窗 END -->
+        
         <div class="index_container">
             <div id="default_map">
                 <!-- 左邊資訊 -->

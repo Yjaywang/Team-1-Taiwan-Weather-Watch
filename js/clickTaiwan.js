@@ -79,9 +79,20 @@ htmlIDs.forEach(htmlID => {
     regionEl.addEventListener("click", async function() {
         //fetch information function
         goToPosition(this.id);
+        getDescContents(this.id);
     });
     function goToPosition(htmlID) {
         const positionEl=document.querySelector("#position");
         positionEl.setAttribute("transform", `translate(${htmlIDToPosition[htmlID]})`);
     }
 });
+
+// 取得縣市的名字
+const city=document.querySelector(".city")
+function getDescContents(id){
+    const country=document.getElementById(id);
+    const descEl=country.getElementsByTagName("desc");
+    const descContent=descEl[0].textContent;
+    const cityName=descContent.split("區域")
+    city.innerHTML=cityName[0];
+};

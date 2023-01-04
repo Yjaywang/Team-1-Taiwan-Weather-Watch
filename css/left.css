@@ -114,7 +114,12 @@ p{
     width: 130px;
 }
 .city{
+    font-size: 30px;
     margin-bottom: 40px;
+}
+.towns{
+    height: 33px;
+    border-radius: 10px;
 }
 .todayRight{
     text-align: center;

@@ -18,9 +18,7 @@ time, mark, audio, video {
     font: inherit;
     vertical-align: baseline;
 }
-#default_map svg path:hover {
-    fill:   #00FF00;
-}
+
 body{
     background-color: #2994eb;
     font-size:20px;
@@ -43,8 +41,12 @@ body{
 }
 .title{
     font-family: Arial;
+    font-weight: 600;
     font-size: 50px;
-    color: rgb(99, 8, 245,0.7);
+    color: transparent; /* 文字顏色設定透明 */
+    background-image: linear-gradient(45deg,#2a04ff ,#05a3f8, #05f862 50%, #86ff04 55%,#fbff04); /* 設定漸層角度及顏色 */
+    -webkit-background-clip: text; /* 背景裁剪成文字的前景色 */
+    background-clip: text;
     cursor: pointer;
     margin: auto 0;
     padding-left: 20px;
@@ -62,10 +64,8 @@ p{
     padding: 20px 0 50px 0;
     max-width: 1200px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 }
-/*--------------------------------- leftInformation */
-
 #leftInformation{
     display: grid;
     grid-template-areas: 
@@ -82,7 +82,7 @@ p{
 .later { grid-area: right; }
 
 .header{
-    background-color: #26232d;
+    background-color: rgba(64, 83, 101, 1);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -92,42 +92,72 @@ p{
     transition: 0.5s;
 }
 .today{
-    background-color: #26232d;
+    background-color: rgba(64, 83, 101, 0.95);
     display: flex;
-    justify-content: center;
     align-items: center;
     width: 500px;
-    height: 300px;
+    height: 350px;
     font-size: 22px;
+    font-weight: 500;
     border-radius: 10px;
     transition: 0.5s;
-    cursor: pointer;
-}
-.today:hover{
-    opacity: 0.8;
-}
-.todayLeft{
-    text-align: center;
-    flex: 60%;
-}
-.todayLeft>img{
-    width: 130px;
-}
-.city{
-    font-size: 30px;
-    margin-bottom: 40px;
-}
-.towns{
-    height: 33px;
-    border-radius: 10px;
-}
-.todayRight{
-    text-align: center;
-    flex: 40%;
 }
 
+.todayLeft{
+    height: 100%;
+    text-align: center;
+    flex: 1;
+    display: grid;
+    grid-template-rows: 280px 70px; 
+}
+.unknow{
+     /* 目前height 280px */
+}
+.town_meun{
+    display: inline-block;
+    width: 130px;
+    height: 25px;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.town_meun_button{
+    background-color: #c0c2c0;
+    width: 130px;
+    height: 25px;
+    margin: 5px 0 10px 0;
+    border-width: 0;
+    padding: 0;
+    padding-left: 5px;
+    cursor: pointer;
+}
+.town_meun_button:hover{
+    opacity: 0.8;
+}
+.todayRight{
+    height: 100%;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.city{
+    margin: 0 0 10px 0;
+    font-size: 33px;
+    font-weight: 700;
+}
+.todayRight>div{
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.todayRight>div>img{
+    width: 130px;
+}
 .tomorrow{
-    background-color: #26232d;
+    background-color: rgba(64, 83, 101, 0.95);
     text-align: center;
     width: 245px;
     height: 180px;
@@ -141,10 +171,10 @@ p{
 }
 .tomorrow>img{
     width: 87px;
-    margin: 10px 0;
+    margin: 15px 0;
 }
 .later{
-    background-color: #26232d;
+    background-color: rgba(64, 83, 101, 0.95);
     text-align: center;
     width: 245px;
     height: 180px;
@@ -158,7 +188,8 @@ p{
 }
 .later>img{
     width: 87px;
-    margin: 10px 0;
+    height: 71.167px;
+    margin: 15px 0;
 }
 /*---------------------------------------- image */
 .background_image_1{
@@ -169,10 +200,30 @@ p{
     bottom: 0;
 
 }
-/* -------screen 1250px */
-@media screen and (max-width: 599px) {
-.title{
-    font-size: 30px;
-    width: 230px;
+/* ---------------------------screen 1250px */
+@media screen and (max-width: 1250px) {
+    .index_container{
+        height: auto;
+    }
+    #leftInformation{
+        display: block;
+        width: 90%;
+        max-width: 1000px;
+    }
+    .header,.today,.tomorrow,.later{
+        width: 100%;
+        margin: 10px 0;
+    }
+    .town_meun_contianer{
+        display: grid;
+        justify-content: center;
+    }
 }
+@media screen and (max-width: 599px) {
+    .header{
+        font-size: 25px;
+    }
+    .title{
+        font-size: 40px;
+    }
 }

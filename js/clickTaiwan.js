@@ -6,11 +6,13 @@ function getTowns() {
     if (option.length > 2) {
         console.log(1)
         let select = document.querySelector("select")
-        for (x = 2; x < option.length; x++) {
+        for (let x = 2; x < option.length; x++) {
             select.removeChild(option[x])
         }
     }
     let location = $(".city").text()
+    console.log(location)
+    console.log(cityDistList[location])
     const TownsAmount = cityDistList[location].length
     let fragment = document.createDocumentFragment()
     for (let x = 1; x < TownsAmount; x++) {
@@ -100,29 +102,21 @@ const htmlIDs = [
     "C09007",
 ]
 
-/*
-htmlIDs.forEach(htmlID => {   
-    const regionEl=document.querySelector(`#${htmlID}`);
-    regionEl.addEventListener("click", async function() {
-        //fetch information function
-        let oldPathChosed = $("#chosed")[0];
-        oldPathChosed.removeAttribute("style","fill: red");
-        oldPathChosed.removeAttribute("id");
-        let newPathChosed = regionEl.querySelector("path");
-        newPathChosed.setAttribute("style","fill: #00c0fb");
-        newPathChosed.setAttribute("id","chosed");
-        goToPosition(this.id);
-        getDescContents(this.id);
-        getTowns();
-    })
-})*/
-
 htmlIDs.forEach((htmlID) => {
     const regionEl = document.querySelector(`#${htmlID}`)
     regionEl.addEventListener("click", async function () {
         //fetch information function
+        let oldPathChosed = $("#chosed")[0]
+        oldPathChosed.removeAttribute("style", "fill: red")
+        oldPathChosed.removeAttribute("id")
+        let newPathChosed = regionEl.querySelector("path")
+        newPathChosed.setAttribute("style", "fill: #00c0fb")
+        newPathChosed.setAttribute("id", "chosed")
+        console.log(this.childNodes[1], htmlID)
         changeText(this.childNodes[1].textContent.slice(0, 3))
         goToPosition(this.id)
+        getDescContents(this.id)
+        getTowns()
     })
     function goToPosition(htmlID) {
         const positionEl = document.querySelector("#position")

@@ -5,6 +5,7 @@ let allDistWeatherData = {}
 let allDistWeekWeatherData = {}
 let allCityWeatherData = {}
 let currentCityWeatherData = {}
+let allTownshipWeeklyData= {}
 const authorization = "CWB-38D05447-1373-4B83-8E52-FEE50DA80FAD"
 class City {
     constructor(city, num, weekNum, list) {
@@ -122,6 +123,228 @@ async function getDistWeatherData(cityNum = "001", time = "1", pop12hTime = "1")
         console.log("fetch failed:", err)
     }
 }
+
+
+
+
+//township weekly weather for popup-window api
+export async function getTownshipWeeklyData(cityName = "宜蘭縣", distName = "頭城鎮"){
+    try {
+        let cityNum
+        for (let i of cityList) {
+            if (i.cityName === cityName) {
+                cityNum = i.weekWeatherApiNum
+            }
+        }
+
+      const response = await fetch(
+        `https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-${cityNum}?Authorization=${authorization}&format=JSON`
+      );
+      const data = await response.json();
+      const townships = data.records.locations[0].location;    
+      for (let township of townships) {
+        let townshipWeeklyData={
+          weatherStatus:[],
+          maxT:[],
+          minT:[],
+          rainPercentage:[],
+          maxBodyT:[],
+          minBodyT:[],
+          rh:[],
+          windVelocity:[],
+          windDirection:[],
+          uvIndex:[],
+          uvDescription:[],
+          firstEndTime:"",
+          startTime:[],
+        };
+        townshipWeeklyData.firstEndTime=township.weatherElement[0].time[0].endTime;
+        for (let i=0;i<township.weatherElement[0].time.length;i++){
+          townshipWeeklyData.weatherStatus.push(township.weatherElement[6].time[i].elementValue[0].value); 
+          townshipWeeklyData.maxT.push(township.weatherElement[12].time[i].elementValue[0].value); 
+          townshipWeeklyData.minT.push(township.weatherElement[8].time[i].elementValue[0].value);
+          townshipWeeklyData.rainPercentage.push(township.weatherElement[0].time[i].elementValue[0].value);
+          townshipWeeklyData.maxBodyT.push(township.weatherElement[5].time[i].elementValue[0].value);
+          townshipWeeklyData.minBodyT.push(township.weatherElement[11].time[i].elementValue[0].value);
+          townshipWeeklyData.rh.push(township.weatherElement[2].time[i].elementValue[0].value);
+          townshipWeeklyData.windVelocity.push(township.weatherElement[4].time[i].elementValue[1].value);
+          townshipWeeklyData.windDirection.push(township.weatherElement[13].time[i].elementValue[0].value);        
+          townshipWeeklyData.startTime.push(township.weatherElement[0].time[i].startTime);        
+        }
+        for (let uv of township.weatherElement[9].time){
+          townshipWeeklyData.uvIndex.push(uv.elementValue[0].value);
+          townshipWeeklyData.uvDescription.push(uv.elementValue[1].value);
+        }      
+        allTownshipWeeklyData[township.locationName]=townshipWeeklyData;
+      }
+      
+      
+      ////create elements////
+      createWeeklyData(distName);
+      
+      
+      function createWeeklyData(townshipName) {
+        const counts= allTownshipWeeklyData[townshipName].weatherStatus.length;
+        const firstEndTime=allTownshipWeeklyData[townshipName].firstEndTime;
+        const weekEl=document.querySelector("#week");
+        const wrapperEl=weekEl.querySelector(".wrapper");
+        let i =0;
+        if (firstEndTime.slice(-8)==="06:00:00"){
+            i++;
+        }
+        for (i ;i<counts;i++){
+            const spanWeatherInfo=document.createElement("span");
+            const divWeatherInfo=document.createElement("div");
+            divWeatherInfo.className="weather-info";
+            spanWeatherInfo.textContent=allTownshipWeeklyData[townshipName].weatherStatus[i];
+            divWeatherInfo.appendChild(spanWeatherInfo);
+            
+            //////////////////////////////////////////////////
+            const startTime=allTownshipWeeklyData[townshipName].startTime[i];
+            const thDate=document.createElement("th");
+            const spanDate=document.createElement("span");
+            const divTime=document.createElement("div");
+            spanDate.textContent=startTime.slice(5, 10);
+            if (startTime.slice(-8)==="18:00:00"){
+                divTime.textContent="晚上";
+            } else {
+                divTime.textContent="白天";
+            }
+            thDate.appendChild(spanDate);
+            thDate.appendChild(divTime);
+
+            /////wait crawling result
+            const tdImg=document.createElement("td");
+            const img=document.createElement("img");
+            tdImg.appendChild(img);
+
+            
+            const tdWeatherInfo = document.createElement("td");
+            tdWeatherInfo.setAttribute("colspan", "2");
+            tdWeatherInfo.appendChild(divWeatherInfo);
+
+
+            const thTemp=document.createElement("th");
+            const tdTemp=document.createElement("td");
+            const spanTemp=document.createElement("span");
+            const maxT=allTownshipWeeklyData[townshipName].maxT[i];
+            const minT=allTownshipWeeklyData[townshipName].minT[i];
+            thTemp.textContent="溫度";
+            spanTemp.textContent=`${minT}~${maxT}°C`;
+            tdTemp.appendChild(spanTemp);
+
+            
+            const thRaining=document.createElement("th");
+            const tdRaining=document.createElement("td");
+            thRaining.textContent="降雨機率";
+            if (allTownshipWeeklyData[townshipName].rainPercentage[i]===" "){
+                tdRaining.textContent="-" ;
+            } else {
+                tdRaining.textContent=`${allTownshipWeeklyData[townshipName].rainPercentage[i]}%`;
+            }
+
+
+            
+            const thBodyTemp=document.createElement("th");
+            const tdBodyTemp=document.createElement("td");
+            const spanBodyTemp=document.createElement("span");
+            const maxBodyT=allTownshipWeeklyData[townshipName].maxBodyT[i];
+            const minBodyT=allTownshipWeeklyData[townshipName].minBodyT[i];
+            thBodyTemp.textContent="體感溫度";
+            spanBodyTemp.textContent=`${minBodyT}~${maxBodyT}°C`;
+            tdBodyTemp.appendChild(spanBodyTemp);
+
+            
+            const thRh=document.createElement("th");
+            const tdRh=document.createElement("td");
+            thRh.textContent="相對濕度";
+            tdRh.textContent=`${allTownshipWeeklyData[townshipName].rh[i]}%`;
+            
+            const thWingVel=document.createElement("th");
+            const spanThWingVel=document.createElement("span");
+            const tdWingVel=document.createElement("td");
+            const spanTdWingVel=document.createElement("span");
+            spanThWingVel.textContent="蒲福風級";
+            spanTdWingVel.textContent=allTownshipWeeklyData[townshipName].windVelocity[i];
+            tdWingVel.appendChild(spanTdWingVel);
+            thWingVel.appendChild(spanThWingVel);
+            
+            
+            const thUV=document.createElement("th");
+            const tdUV=document.createElement("td");
+            if(firstEndTime.slice(-8)==="18:00:00" && i%2===0){
+                thUV.textContent="紫外線";
+                tdUV.textContent=allTownshipWeeklyData[townshipName].uvIndex[Math.floor(i/2)];
+            } else if (firstEndTime.slice(-8)==="06:00:00" && i%2===1){
+                thUV.textContent="紫外線";
+                tdUV.textContent=allTownshipWeeklyData[townshipName].uvIndex[Math.floor(i/2)];
+            }
+            
+
+            const thWingDirection=document.createElement("th");
+            const tdWingDirection=document.createElement("td");
+            thWingDirection.textContent="風向";
+            tdWingDirection.textContent=allTownshipWeeklyData[townshipName].windDirection[i];
+            const thWhat=document.createElement("th");
+            const tdWhat=document.createElement("th");
+
+            ///////////////////////////////////////////////////////
+            const trHead=document.createElement("tr");
+            trHead.appendChild(thDate);
+            trHead.appendChild(tdImg);
+            trHead.appendChild(tdWeatherInfo);
+            
+            const trBodyFirst=document.createElement("tr");
+            trBodyFirst.appendChild(thTemp);
+            trBodyFirst.appendChild(tdTemp);
+            trBodyFirst.appendChild(thRaining);
+            trBodyFirst.appendChild(tdRaining);
+            
+
+            const trBodySecond=document.createElement("tr");
+            trBodySecond.appendChild(thBodyTemp);
+            trBodySecond.appendChild(tdBodyTemp);
+            trBodySecond.appendChild(thRh);
+            trBodySecond.appendChild(tdRh);
+
+
+            const trBodyThird=document.createElement("tr");
+            trBodyThird.appendChild(thWingVel);
+            trBodyThird.appendChild(tdWingVel);
+            trBodyThird.appendChild(thUV);
+            trBodyThird.appendChild(tdUV);
+
+            const trBodyFourth=document.createElement("tr");
+            trBodyFourth.appendChild(thWingDirection);
+            trBodyFourth.appendChild(tdWingDirection);
+            trBodyFourth.appendChild(thWhat);
+            trBodyFourth.appendChild(tdWhat);
+
+            /////////////////////////////////////////////////////
+            const thead=document.createElement("thead");
+            thead.appendChild(trHead);
+
+            const tbody=document.createElement("tbody");
+            tbody.appendChild(trBodyFirst);
+            tbody.appendChild(trBodySecond);
+            tbody.appendChild(trBodyThird);
+            tbody.appendChild(trBodyFourth);
+
+            ////////////////////////////////////////////////////////
+            const table=document.createElement("table");
+            table.className="table";
+            table.appendChild(thead);
+            table.appendChild(tbody);
+            
+            //////////////////////////////////////////////////////////
+            wrapperEl.appendChild(table);  
+        }        
+      }
+    } catch (error) {
+      console.log(`error message: ${error}`);
+    }  
+  }
+
 
 /* 鄉鎮一周天氣資訊API */
 export async function getDistWeekWeatherData(cityName = "宜蘭縣", distName = "頭城鎮") {

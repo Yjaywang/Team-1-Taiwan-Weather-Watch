@@ -52,8 +52,9 @@
 .three,
 .week {
     background-color: #fff;
-    height: 500px;
+    height: 80vh;
     border-radius: 10px;
+    overflow-y: scroll;
 }
 
 .highlighted {
@@ -76,4 +77,5 @@
     background: #000000;
     opacity: 0.5;
     z-index: 40;
+    cursor: pointer;
 }

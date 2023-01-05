@@ -171,11 +171,13 @@ town_meun_button.addEventListener("click", (e) => {
 // 彈跳視窗
 document.onclick = function (click) {
     const chartWindow = document.querySelector("#chart_window")
+    const dialogMask = document.getElementsByClassName("dialogMask")
     const chartHeaderBackground = document.querySelector(".chart_window_header_background")
     if (click.target.className === "town_meun_button") {
         if (isChooseDist) {
             chartWindow.style.display = "block"
             chartHeaderBackground.style.display = "block"
+            dialogMask[0].classList.remove("none")
         } else {
         }
     }

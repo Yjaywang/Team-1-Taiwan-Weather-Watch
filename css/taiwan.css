@@ -46,12 +46,12 @@
     display: inline-block;
     margin: 0;
     padding: 0;
-    animation: marquee 10s linear infinite;
+    animation: marquee 15s linear infinite;
 }
 
 @keyframes marquee {
     0% {
-        transform: translateX(100%);
+        transform: translateX(200%);
     }
     100% {
         transform: translateX(-100%);

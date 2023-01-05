@@ -1,4 +1,8 @@
-import { currentCityWeatherData, getDistWeekWeatherData } from "./data.js"
+import { 
+    currentCityWeatherData, 
+    getDistWeekWeatherData, 
+    getTownshipWeeklyData, 
+} from "./data.js"
 import { cityDistList } from "./city.js"
 
 //更改鄉鎮選單
@@ -163,7 +167,8 @@ town_meun.addEventListener("change", (e) => {
 const town_meun_button = document.querySelector(".town_meun_button")
 town_meun_button.addEventListener("click", (e) => {
     if (isChooseDist) {
-        getDistWeekWeatherData(city.textContent, distSelectName)
+        getDistWeekWeatherData(city.textContent, distSelectName);
+        getTownshipWeeklyData(city.textContent, distSelectName);
     } else {
     }
 })

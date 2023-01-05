@@ -1,0 +1,39 @@
+table{
+    background-color: #fffcf5;
+    border-radius: 10px;
+    width: 100%;
+    table-layout: auto;
+}
+
+table thead>tr>th>span{
+    background-color: #daf3f0;
+    border-radius: 50px;
+    font-weight: 400;
+}
+
+table tbody th{
+    color: #0f838c;
+    white-space: nowrap;
+    
+}
+
+th{
+    text-align: left;
+}
+
+table .weather-info {
+    background-color: #a4dbd5;
+    padding: 2px 20px;
+    border-radius: 5px;
+    position: relative;
+}
+
+table img {
+    width: 30px;
+    margin-left: 1rem;
+}
+
+table:nth-child(even) {
+    border: 1px solid #0f838c;
+    background-color: white;
+}

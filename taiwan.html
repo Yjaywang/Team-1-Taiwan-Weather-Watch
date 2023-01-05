@@ -25,12 +25,30 @@
                     逐3小時預報
                 </div>
                 <div id="tab_weeks" class="tab_chart_window_header" title="一週溫度曲線">一週溫度曲線</div>
-                <div id="tab_body" class="tab_chart_window_header" title="一週體感溫度曲線">一週體感溫度曲線</div>
+                <div id="tab_body" class="tab_chart_window_header" title="一週綜合曲線">一週綜合曲線</div>
+                <div id="tab_body1" class="tab_chart_window_header" title="一週體感溫度曲線">一週溫度曲線</div>
             </div>
             <!-- class="chart_window_header的底色 -->
             <div class="chart_window_header_background"></div>
+            <!-- 逐3鄉鎮的位置 -->
+            <div id="three" class="none three"></div>
+            <!-- 一週鄉鎮的位置 -->
+            <div id="week" class="none week"></div>
             <!-- 曲線圖的位置 -->
-            <div class="highcharts"></div>
+            <div id="mainChart" class="highcharts">
+                <div class="chartContainer">
+                    <figure class="highcharts-figure">
+                        <div id="container"></div>
+                    </figure>
+                </div>
+            </div>
+            <div id="secondChart" class="none highcharts">
+                <div class="chartContainer">
+                    <figure class="highcharts-figure">
+                        <div id="container1"></div>
+                    </figure>
+                </div>
+            </div>
         </div>
         <!-- 彈出視窗 END -->
 
@@ -492,5 +510,6 @@
         <script type="module" src="js/clickTaiwan.js"></script>
         <script src="js/city.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
     </body>
 </html>

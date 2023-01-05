@@ -1,3 +1,7 @@
+.none {
+    display: none;
+}
+
 #default_map svg {
     width: 500px;
     height: 630px;
@@ -5,12 +9,11 @@
 #default_map svg a {
     cursor: pointer;
 }
- 
+
 /* 附註：index.html 內沒有is-active，這個CSS疑似沒用，待確認
 #default_map svg a.is-active path {
     fill: #fb2a00;
 } */
-
 
 #default_map svg path {
     fill: #c7f6f5;
@@ -20,7 +23,7 @@
     stroke-dashoffset: 0 !important;
 }
 #default_map svg path:hover {
-    fill:  #00fbe6;
+    fill: #00fbe6;
 }
 
 @media screen and (max-width: 1250px) {
@@ -28,7 +31,3 @@
         display: none;
     }
 }
-
-
-
-

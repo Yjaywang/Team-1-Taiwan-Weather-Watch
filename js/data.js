@@ -1,5 +1,5 @@
 import { cityDistList } from "./city.js"
-import { chartGenerate } from "./chart.js"
+import { chartGenerate, tempChartGenerate } from "./chart.js"
 let allDistWeatherData = {}
 let allDistWeekWeatherData = {}
 let allCityWeatherData = {}
@@ -127,13 +127,13 @@ async function getDistWeekWeatherData(cityNum = "003", cityName, distName) {
                     Number(`${i.weatherElement[9].time[6].elementValue[0].value}`),
                 ],
                 rh: [
-                    Number(`${i.weatherElement[3].time[0].elementValue[0].value}`),
-                    Number(`${i.weatherElement[3].time[1].elementValue[0].value}`),
-                    Number(`${i.weatherElement[3].time[2].elementValue[0].value}`),
-                    Number(`${i.weatherElement[3].time[3].elementValue[0].value}`),
-                    Number(`${i.weatherElement[3].time[4].elementValue[0].value}`),
-                    Number(`${i.weatherElement[3].time[5].elementValue[0].value}`),
-                    Number(`${i.weatherElement[3].time[6].elementValue[0].value}`),
+                    Number(`${i.weatherElement[2].time[0].elementValue[0].value}`),
+                    Number(`${i.weatherElement[2].time[1].elementValue[0].value}`),
+                    Number(`${i.weatherElement[2].time[2].elementValue[0].value}`),
+                    Number(`${i.weatherElement[2].time[3].elementValue[0].value}`),
+                    Number(`${i.weatherElement[2].time[4].elementValue[0].value}`),
+                    Number(`${i.weatherElement[2].time[5].elementValue[0].value}`),
+                    Number(`${i.weatherElement[2].time[6].elementValue[0].value}`),
                 ],
                 maxT: [
                     Number(`${i.weatherElement[12].time[1].elementValue[0].value}`),
@@ -163,7 +163,8 @@ async function getDistWeekWeatherData(cityNum = "003", cityName, distName) {
         const maxT = allDistWeekWeatherData[`${distName}`].maxT
         const minT = allDistWeekWeatherData[`${distName}`].minT
         console.log(maxT, minT)
-        chartGenerate(cityName, distName, maxT, minT)
+        chartGenerate(cityName, distName, temperature, rh, uvi)
+        tempChartGenerate(cityName, distName, maxT, minT)
         return data
     } catch (err) {
         console.log("fetch failed:", err)

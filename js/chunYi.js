@@ -53,3 +53,48 @@ tabs.forEach((tab) => {
         event.target.classList.add("highlighted")
     })
 })
+
+/* 彈出視窗切換 */
+const tab_weeks = document.getElementById("tab_weeks")
+const tab_3hr_table = document.getElementById("tab_3hr_table")
+const tab_body = document.getElementById("tab_body")
+const tab_body1 = document.getElementById("tab_body1")
+const three = document.getElementById("three")
+const week = document.getElementById("week")
+const mainChart = document.getElementById("mainChart")
+const secondChart = document.getElementById("secondChart")
+const popupScreen = [three, week, mainChart, secondChart]
+
+tab_weeks.addEventListener("click", (e) => {
+    for (let i of popupScreen) {
+        if (i !== week) {
+            i.classList.add("none")
+        }
+    }
+    week.classList.remove("none")
+})
+tab_3hr_table.addEventListener("click", (e) => {
+    for (let i of popupScreen) {
+        if (i !== three) {
+            i.classList.add("none")
+        }
+    }
+    three.classList.remove("none")
+})
+tab_body.addEventListener("click", (e) => {
+    for (let i of popupScreen) {
+        if (i !== mainChart) {
+            i.classList.add("none")
+        }
+    }
+    mainChart.classList.remove("none")
+})
+
+tab_body1.addEventListener("click", (e) => {
+    for (let i of popupScreen) {
+        if (i !== secondChart) {
+            i.classList.add("none")
+        }
+    }
+    secondChart.classList.remove("none")
+})

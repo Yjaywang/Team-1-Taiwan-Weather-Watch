@@ -5,15 +5,22 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
+        <style>
+            .chartContainer {
+                width: min(100%, 1000px);
+                height: 500px;
+            }
+        </style>
     </head>
     <body>
         <!--charts-->
-
-        <figure class="highcharts-figure">
-            <div id="container"></div>
-        </figure>
+        <div class="chartContainer">
+            <figure class="highcharts-figure">
+                <div id="container"></div>
+            </figure>
+        </div>
         <!--end charts-->
         <script src="https://code.highcharts.com/highcharts.js"></script>
-        <script type="module" src="js/data.js"></script>
+        <script type="module" src="js/chart2.js"></script>
     </body>
 </html>

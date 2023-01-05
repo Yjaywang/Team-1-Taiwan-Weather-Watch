@@ -178,13 +178,19 @@ document.onclick = function (click) {
     const chartWindow = document.querySelector("#chart_window")
     const dialogMask = document.getElementsByClassName("dialogMask")
     const chartHeaderBackground = document.querySelector(".chart_window_header_background")
+    // 打開 chart_window
     if (click.target.className === "town_meun_button") {
         if (isChooseDist) {
             chartWindow.style.display = "block"
             chartHeaderBackground.style.display = "block"
             dialogMask[0].classList.remove("none")
-        } else {
         }
+    }
+    // 點擊dialogMask 關閉chart_window
+    else if(click.target.className === "dialogMask"){
+            chartWindow.style.display = "none"
+            chartHeaderBackground.style.display = "none"
+            dialogMask[0].classList.add("none")
     }
 }
 

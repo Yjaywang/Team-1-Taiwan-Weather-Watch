@@ -1,5 +1,6 @@
-import { currentCityWeatherData } from "./data.js"
+import { currentCityWeatherData, getDistWeekWeatherData } from "./data.js"
 import { cityDistList } from "./city.js"
+
 //更改鄉鎮選單
 function getTowns() {
     let option = document.querySelectorAll("option")
@@ -11,8 +12,6 @@ function getTowns() {
         }
     }
     let location = $(".city").text()
-    console.log(location)
-    console.log(cityDistList[location])
     const TownsAmount = cityDistList[location].length
     let fragment = document.createDocumentFragment()
     for (let x = 1; x < TownsAmount; x++) {
@@ -112,7 +111,6 @@ htmlIDs.forEach((htmlID) => {
         let newPathChosed = regionEl.querySelector("path")
         newPathChosed.setAttribute("style", "fill: #00c0fb")
         newPathChosed.setAttribute("id", "chosed")
-        console.log(this.childNodes[1], htmlID)
         changeText(this.childNodes[1].textContent.slice(0, 3))
         goToPosition(this.id)
         getDescContents(this.id)
@@ -152,4 +150,39 @@ function getDescContents(id) {
     const descContent = descEl[0].textContent
     const cityName = descContent.split("區域")
     city.innerHTML = cityName[0]
+}
+let isChooseDist = false
+
+/* 拿SELCET值-區域名稱 */
+let distSelectName
+const town_meun = document.querySelector(".town_meun")
+town_meun.addEventListener("change", (e) => {
+    isChooseDist = true
+    distSelectName = e.target.value
+})
+const town_meun_button = document.querySelector(".town_meun_button")
+town_meun_button.addEventListener("click", (e) => {
+    if (isChooseDist) {
+        getDistWeekWeatherData(city.textContent, distSelectName)
+    } else {
+    }
+})
+
+// 彈跳視窗
+document.onclick = function (click) {
+    const chartWindow = document.querySelector("#chart_window")
+    const chartHeaderBackground = document.querySelector(".chart_window_header_background")
+    if (click.target.className === "town_meun_button") {
+        if (isChooseDist) {
+            chartWindow.style.display = "block"
+            chartHeaderBackground.style.display = "block"
+        } else {
+        }
+    }
+}
+
+/* 跑馬燈 */
+export function generateMarqueeContent(weatherDescription) {
+    const marqueeContent = document.getElementById("marqueeContent")
+    marqueeContent.innerHTML = weatherDescription
 }

@@ -10,7 +10,11 @@ export function chartGenerate(city = "台北", dist = "信義區", temperature, 
             weekdays: ["(日)", "(一)", "(二)", "(三)", "(四)", "(五)", "(六)"],
         },
     })
-
+    const now = new Date()
+    const year = now.getFullYear()
+    const month = now.getMonth() + 1
+    const day = now.getDate()
+    const date = `${year}/${month}/${day}`
     let chart = Highcharts.chart("container", {
         chart: {
             zoomType: "xy",
@@ -34,10 +38,14 @@ export function chartGenerate(city = "台北", dist = "信義區", temperature, 
         title: {
             text: `${city}${dist}`,
             align: "left",
+            y: 5,
+            x: 10,
         },
         subtitle: {
             text: "Source: 中央氣象局",
             align: "left",
+            y: 30,
+            x: 10,
         },
         xAxis: [
             {
@@ -54,7 +62,7 @@ export function chartGenerate(city = "台北", dist = "信義區", temperature, 
         ],
         plotOptions: {
             series: {
-                pointStart: new Date("2023/1/").getTime(),
+                pointStart: new Date(`${date}`).getTime(),
                 pointInterval: 24 * 3600 * 1000, // one day
             },
         },
@@ -64,13 +72,13 @@ export function chartGenerate(city = "台北", dist = "信義區", temperature, 
                 labels: {
                     format: "{value}°C",
                     style: {
-                        color: Highcharts.getOptions().colors[7],
+                        color: Highcharts.getOptions().colors[3],
                     },
                 },
                 title: {
                     text: "溫度（°C）",
                     style: {
-                        color: Highcharts.getOptions().colors[7],
+                        color: Highcharts.getOptions().colors[3],
                     },
                 },
             },
@@ -80,13 +88,13 @@ export function chartGenerate(city = "台北", dist = "信義區", temperature, 
                 title: {
                     text: "紫外線指數",
                     style: {
-                        color: Highcharts.getOptions().colors[0],
+                        color: Highcharts.getOptions().colors[4],
                     },
                 },
                 labels: {
                     format: "{value} uvi",
                     style: {
-                        color: Highcharts.getOptions().colors[0],
+                        color: Highcharts.getOptions().colors[4],
                     },
                 },
                 opposite: true,
@@ -97,13 +105,13 @@ export function chartGenerate(city = "台北", dist = "信義區", temperature, 
                 title: {
                     text: "平均相對溼度 (%)",
                     style: {
-                        color: Highcharts.getOptions().colors[4],
+                        color: Highcharts.getOptions().colors[0],
                     },
                 },
                 labels: {
                     format: "{value} %",
                     style: {
-                        color: Highcharts.getOptions().colors[4],
+                        color: Highcharts.getOptions().colors[0],
                     },
                 },
                 opposite: true,
@@ -126,7 +134,8 @@ export function chartGenerate(city = "台北", dist = "信義區", temperature, 
         series: [
             {
                 name: "紫外線指數",
-                type: "column",
+                type: "spline",
+                color: "#8085e5",
                 yAxis: 1,
                 data: uvi,
                 tooltip: {
@@ -138,7 +147,7 @@ export function chartGenerate(city = "台北", dist = "信義區", temperature, 
                 type: "spline",
                 yAxis: 2,
                 data: rh,
-                color: "#8085e5",
+                color: "#7CB3E6",
                 marker: {
                     enabled: false,
                 },
@@ -148,13 +157,13 @@ export function chartGenerate(city = "台北", dist = "信義區", temperature, 
                 allowPointSelect: true,
             },
             {
-                name: "最高溫度",
+                name: "平均溫度",
                 type: "spline",
                 data: temperature,
                 tooltip: {
                     valueSuffix: " °C",
                 },
-                color: "#2eaed0",
+                color: "#ff8c00",
                 allowPointSelect: true,
             },
         ],
@@ -202,7 +211,7 @@ export function chartGenerate(city = "台北", dist = "信義區", temperature, 
 }
 
 /*  chart設定*/
-export function tempChartGenerate(city = "台北", dist = "信義區", maxT, minT) {
+export function tempChartGenerate(city = "台北", dist = "信義區", maxAT, minAT) {
     Highcharts.setOptions({
         time: {
             timezoneOffset: -480,
@@ -213,7 +222,11 @@ export function tempChartGenerate(city = "台北", dist = "信義區", maxT, min
             weekdays: ["(日)", "(一)", "(二)", "(三)", "(四)", "(五)", "(六)"],
         },
     })
-
+    const now = new Date()
+    const year = now.getFullYear()
+    const month = now.getMonth() + 1
+    const day = now.getDate()
+    const date = `${year}/${month}/${day}`
     let chart1 = Highcharts.chart("container1", {
         chart: {
             zoomType: "xy",
@@ -222,10 +235,14 @@ export function tempChartGenerate(city = "台北", dist = "信義區", maxT, min
         title: {
             text: `${city}${dist}`,
             align: "left",
+            y: 5,
+            x: 10,
         },
         subtitle: {
             text: "Source: 中央氣象局",
             align: "left",
+            y: 30,
+            x: 10,
         },
         xAxis: [
             {
@@ -242,7 +259,7 @@ export function tempChartGenerate(city = "台北", dist = "信義區", maxT, min
         ],
         plotOptions: {
             series: {
-                pointStart: new Date("2023/1/").getTime(),
+                pointStart: new Date(`${date}`).getTime(),
                 pointInterval: 24 * 3600 * 1000, // one day
             },
         },
@@ -279,13 +296,13 @@ export function tempChartGenerate(city = "台北", dist = "信義區", maxT, min
         },
         series: [
             {
-                name: "最高體感溫度",
-                data: maxT,
+                name: "體感高溫",
+                data: maxAT,
                 color: "#ff8c00",
             },
             {
-                name: "最低體感溫度",
-                data: minT,
+                name: "體感低溫",
+                data: minAT,
                 color: "#009acd",
             },
         ],

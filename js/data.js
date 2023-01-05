@@ -1,5 +1,6 @@
 import { cityDistList } from "./city.js"
 import { chartGenerate, tempChartGenerate } from "./chart.js"
+import { generateMarqueeContent } from "./clickTaiwan.js"
 let allDistWeatherData = {}
 let allDistWeekWeatherData = {}
 let allCityWeatherData = {}
@@ -22,7 +23,7 @@ const N_Changhua = new City("彰化縣", "017", "019", cityDistList.N_Changhua)
 const M_Nantou = new City("南投縣", "021", "023", cityDistList.M_Nantou)
 const P_Yunlin = new City("雲林縣", "025", "027", cityDistList.P_Yunlin)
 const Q_Chiayi = new City("嘉義縣", "029", "031", cityDistList.Q_Chiayi)
-const T_Pingtung = new City("屏東縣g", "033", "035", cityDistList.T_Pingtung)
+const T_Pingtung = new City("屏東縣", "033", "035", cityDistList.T_Pingtung)
 const V_Taitung = new City("臺東縣", "037", "039", cityDistList.V_Taitung)
 const U_Hualien = new City("花蓮縣", "041", "043", cityDistList.U_Hualien)
 const X_Penghu = new City("澎湖縣", "045", "047", cityDistList.X_Penghu)
@@ -36,6 +37,30 @@ const B_Taichung = new City("臺中市", "073", "075", cityDistList.B_Taichung)
 const D_Tainan = new City("臺南市", "077", "079", cityDistList.D_Tainan)
 const Z_Lianjiang = new City("連江縣", "081", "083", cityDistList.Z_Lianjiang)
 const W_Kinmen = new City("金門縣", "085", "087", cityDistList.W_Kinmen)
+const cityList = [
+    G_Yilan,
+    H_Taoyuan,
+    J_Hsinchu,
+    K_Miaoli,
+    N_Changhua,
+    M_Nantou,
+    P_Yunlin,
+    Q_Chiayi,
+    T_Pingtung,
+    V_Taitung,
+    U_Hualien,
+    X_Penghu,
+    C_Keelung,
+    O_Hsinchu,
+    I_Chiayi,
+    A_Taipei,
+    E_Kaohsiung,
+    F_New_Taipei,
+    B_Taichung,
+    D_Tainan,
+    Z_Lianjiang,
+    W_Kinmen,
+]
 
 /* 縣市二日天氣資訊API */
 async function getCityWeatherData(time = "1", pop12hTime = "1") {
@@ -99,8 +124,14 @@ async function getDistWeatherData(cityNum = "001", time = "1", pop12hTime = "1")
 }
 
 /* 鄉鎮一周天氣資訊API */
-async function getDistWeekWeatherData(cityNum = "003", cityName, distName) {
+export async function getDistWeekWeatherData(cityName = "宜蘭縣", distName = "頭城鎮") {
     try {
+        let cityNum
+        for (let i of cityList) {
+            if (i.cityName === cityName) {
+                cityNum = i.weekWeatherApiNum
+            }
+        }
         const response = await fetch(
             `https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-${cityNum}?Authorization=${authorization}&format=JSON`
         )
@@ -135,36 +166,34 @@ async function getDistWeekWeatherData(cityNum = "003", cityName, distName) {
                     Number(`${i.weatherElement[2].time[5].elementValue[0].value}`),
                     Number(`${i.weatherElement[2].time[6].elementValue[0].value}`),
                 ],
-                maxT: [
-                    Number(`${i.weatherElement[12].time[1].elementValue[0].value}`),
-                    Number(`${i.weatherElement[12].time[3].elementValue[0].value}`),
-                    Number(`${i.weatherElement[12].time[5].elementValue[0].value}`),
-                    Number(`${i.weatherElement[12].time[7].elementValue[0].value}`),
-                    Number(`${i.weatherElement[12].time[9].elementValue[0].value}`),
-                    Number(`${i.weatherElement[12].time[11].elementValue[0].value}`),
-                    Number(`${i.weatherElement[12].time[13].elementValue[0].value}`),
+                maxAT: [
+                    Number(`${i.weatherElement[5].time[1].elementValue[0].value}`),
+                    Number(`${i.weatherElement[5].time[3].elementValue[0].value}`),
+                    Number(`${i.weatherElement[5].time[5].elementValue[0].value}`),
+                    Number(`${i.weatherElement[5].time[7].elementValue[0].value}`),
+                    Number(`${i.weatherElement[5].time[9].elementValue[0].value}`),
+                    Number(`${i.weatherElement[5].time[11].elementValue[0].value}`),
+                    Number(`${i.weatherElement[5].time[13].elementValue[0].value}`),
                 ],
-                minT: [
-                    Number(`${i.weatherElement[8].time[0].elementValue[0].value}`),
-                    Number(`${i.weatherElement[8].time[2].elementValue[0].value}`),
-                    Number(`${i.weatherElement[8].time[4].elementValue[0].value}`),
-                    Number(`${i.weatherElement[8].time[6].elementValue[0].value}`),
-                    Number(`${i.weatherElement[8].time[8].elementValue[0].value}`),
-                    Number(`${i.weatherElement[8].time[10].elementValue[0].value}`),
-                    Number(`${i.weatherElement[8].time[11].elementValue[0].value}`),
+                minAT: [
+                    Number(`${i.weatherElement[11].time[0].elementValue[0].value}`),
+                    Number(`${i.weatherElement[11].time[2].elementValue[0].value}`),
+                    Number(`${i.weatherElement[11].time[4].elementValue[0].value}`),
+                    Number(`${i.weatherElement[11].time[6].elementValue[0].value}`),
+                    Number(`${i.weatherElement[11].time[8].elementValue[0].value}`),
+                    Number(`${i.weatherElement[11].time[10].elementValue[0].value}`),
+                    Number(`${i.weatherElement[11].time[11].elementValue[0].value}`),
                 ],
             }
             allDistWeekWeatherData[i.locationName] = distWeekWeatherData
         }
-        console.log(allDistWeekWeatherData)
         const temperature = allDistWeekWeatherData[`${distName}`].t
         const uvi = allDistWeekWeatherData[`${distName}`].uvi
         const rh = allDistWeekWeatherData[`${distName}`].rh
-        const maxT = allDistWeekWeatherData[`${distName}`].maxT
-        const minT = allDistWeekWeatherData[`${distName}`].minT
-        console.log(maxT, minT)
+        const maxAT = allDistWeekWeatherData[`${distName}`].maxAT
+        const minAT = allDistWeekWeatherData[`${distName}`].minAT
         chartGenerate(cityName, distName, temperature, rh, uvi)
-        tempChartGenerate(cityName, distName, maxT, minT)
+        tempChartGenerate(cityName, distName, maxAT, minAT)
         return data
     } catch (err) {
         console.log("fetch failed:", err)
@@ -230,7 +259,5 @@ async function getDistWeekWeatherData(cityNum = "003", cityName, distName) {
         console.log("fetch failed:", err)
     }
 })()
-
-getDistWeekWeatherData(G_Yilan.weekWeatherApiNum, G_Yilan.cityName, "宜蘭市")
 
 export { currentCityWeatherData }

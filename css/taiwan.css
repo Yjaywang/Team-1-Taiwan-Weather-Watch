@@ -26,6 +26,38 @@
     fill: #00fbe6;
 }
 
+/* 跑馬燈 */
+.marquee_container {
+    position: absolute;
+    top: 100px;
+    width: 100%;
+    background-color: rgba(64, 83, 101, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.marquee {
+    width: 800px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee p {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
 @media screen and (max-width: 1250px) {
     #default_map svg {
         display: none;

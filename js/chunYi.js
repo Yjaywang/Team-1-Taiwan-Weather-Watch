@@ -23,15 +23,19 @@ function toggle(){
     
 }*/
 
-// 彈跳視窗
+// 彈跳視窗 我移到clickTaiwan 去了
+/*
 document.onclick = function (click) {
     const chartWindow = document.querySelector("#chart_window")
     const chartHeaderBackground = document.querySelector(".chart_window_header_background")
     if (click.target.className === "town_meun_button") {
-        chartWindow.style.display = "block"
-        chartHeaderBackground.style.display = "block"
+        if (isChooseDist) {
+            chartWindow.style.display = "block"
+            chartHeaderBackground.style.display = "block"
+        } else {
+        }
     }
-}
+}*/
 
 // 滑鼠移入chartHeader，底色變色
 const chartHeader = document.querySelector(".chart_window_header")

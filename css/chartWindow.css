@@ -7,6 +7,7 @@
     transform: translate(-50%, 0);
     display: none;
 }
+
 .chart_window_header {
     display: flex;
     border-radius: 10px;

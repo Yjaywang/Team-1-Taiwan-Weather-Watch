@@ -16,7 +16,7 @@ The project uses the GitHub Pages feature to deploy the project online.
 # Team roles
 
 廖梓兆: Host, responsible for banner, data processing, curve chart production  
-王衍霖: Mainly responsible for connecting API and data processing, three-hour weather card production  
-王威翰: Mainly responsible for connecting API and data processing, weekly weather card production  
+王衍霖: Mainly responsible for connecting API and data processing, weekly weather card production  
+王威翰: Mainly responsible for connecting API and data processing, three-hour weather card production
 吳佳芸: Mainly responsible for screen processing, responsible for html page structure and RWD, CSS design, city and town menu production  
 陳群嶧: Mainly responsible for screen processing, responsible for html page structure and RWD, CSS design, pop-up window design

@@ -281,6 +281,7 @@ city_menu.addEventListener("change", (e) => {
     citySelectName = e.target.value
     if (citySelectName !== "選擇城市") {
         city.innerHTML = citySelectName
+        isChooseDist = false
         getTowns()
     }
 })

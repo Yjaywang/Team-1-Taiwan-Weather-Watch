@@ -7,22 +7,21 @@ import { cityDistList } from "./city.js"
 
 //更改鄉鎮選單
 function getTowns() {
-    let option = document.querySelectorAll("option")
-    if (option.length > 2) {
-        console.log(1)
-        let select = document.querySelector("select")
-        for (let x = 2; x < option.length; x++) {
-            select.removeChild(option[x])
-        }
-    }
-    let location = $(".city").text()
-    const TownsAmount = cityDistList[location].length
-    let fragment = document.createDocumentFragment()
-    for (let x = 1; x < TownsAmount; x++) {
-        $("option:last").html(cityDistList[location][0])
-        $("option:last").clone().html(cityDistList[location][x]).appendTo(fragment)
-    }
-    document.querySelector(".town_meun").appendChild(fragment)
+    let townOptions = document.querySelector(".town_menu").children;
+    let optionClone = $("option:first").clone();
+    optionClone.innerHTML = "選擇鄉鎮";
+    if (townOptions.length > 2) {
+        let townSelect = document.querySelectorAll("select")[1];
+        townSelect.innerHTML = "";
+        document.querySelector(".town_menu").appendChild(optionClone[0])
+    };
+    let location = $(".city").text();
+    const TownsAmount = cityDistList[location].length;
+    let fragment = document.createDocumentFragment();
+    for (let x = 0; x < TownsAmount; x++) {
+        optionClone.clone().html(cityDistList[location][x]).appendTo(fragment)
+    };
+    document.querySelector(".town_menu").appendChild(fragment)
 }
 //開網頁偵測地區更動鄉鎮市選單
 window.onload = () => {
@@ -159,13 +158,13 @@ let isChooseDist = false
 
 /* 拿SELCET值-區域名稱 */
 let distSelectName
-const town_meun = document.querySelector(".town_meun")
-town_meun.addEventListener("change", (e) => {
+const town_menu = document.querySelector(".town_menu")
+town_menu.addEventListener("change", (e) => {
     isChooseDist = true
     distSelectName = e.target.value
 })
-const town_meun_button = document.querySelector(".town_meun_button")
-town_meun_button.addEventListener("click", (e) => {
+const town_menu_button = document.querySelector(".town_menu_button")
+town_menu_button.addEventListener("click", (e) => {
     if (isChooseDist) {
         getDistWeekWeatherData(city.textContent, distSelectName);
         getTownshipWeeklyData(city.textContent, distSelectName);
@@ -173,12 +172,30 @@ town_meun_button.addEventListener("click", (e) => {
     }
 })
 
+
+// rwd小螢幕縣市名下拉選單切換功能
+
+let citySelectName ;
+const city_menu = document.querySelector(".city_menu");
+console.log(city_menu)
+city_menu.addEventListener("change", (e) => {
+    citySelectName = e.target.value;
+    if(citySelectName !== "選擇城市"){
+        city.innerHTML = citySelectName;
+        getTowns()
+    }
+})
+
+
+
+
+
 // 彈跳視窗
 document.onclick = function (click) {
     const chartWindow = document.querySelector("#chart_window")
     const dialogMask = document.getElementsByClassName("dialogMask")
     const chartHeaderBackground = document.querySelector(".chart_window_header_background")
-    if (click.target.className === "town_meun_button") {
+    if (click.target.className === "town_menu_button") {
         if (isChooseDist) {
             chartWindow.style.display = "block"
             chartHeaderBackground.style.display = "block"

@@ -2,6 +2,7 @@
     position: absolute;
     max-width: 1200px;
     width: 95%;
+    min-height: 930px;
     z-index: 99;
     left: 50%;
     transform: translate(-50%, 0);
@@ -10,29 +11,31 @@
 
 .chart_window_header {
     display: flex;
-    border-radius: 10px;
     width: 100%;
     height: 50px;
     z-index: 2;
-}
-
-.chart_window_header :hover {
     cursor: pointer;
 }
+
 .chart_window_header_background {
     position: absolute;
     background-color: rgba(64, 83, 101, 0.95);
-    border-radius: 10px;
+    border-radius: 10px 10px 0 0;
     width: 100%;
     height: 50px;
     top: 0;
     z-index: -1;
     display: none;
 }
+
+.tab_chart_window_header:hover{
+    background-color:#202020 ;
+}
+
 #tab_3hr_table,
 #tab_weeks,
-#tab_body,
-#tab_body1 {
+#tab_curve_other,
+#tab_curve_temper {
     flex: 1;
     display: flex;
     justify-content: center;
@@ -40,25 +43,26 @@
     height: 50px;
     color: #00ff00;
 }
-#tab_3hr_table {
-    border-radius: 10px 0 0 10px;
-}
-#tab_body,
-#tab_body1 {
-    border-radius: 0 10px 10px 0;
-}
+
 
 .highcharts,
-.three,
-.week {
+.three{
     background-color: #fff;
     height: 500px;
-    border-radius: 10px;
+    border-radius: 0 0 10px 10px;
 }
-
+.week {
+    background-color: #fff;
+    /* height: calc(100vh - 150px);   根據卷軸大小調整 */
+    border-radius: 0 0 10px 10px;
+}
+.wrapper{
+    border: 0;
+}
 .highlighted {
     border: 3px solid #00ff00;
     background-color: #202020;
+    border-radius: 10px 10px 0 0;
 }
 
 .chartContainer {
@@ -68,11 +72,11 @@
 }
 
 .dialogMask {
-    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100%;
-    left: 0px;
-    top: 0px;
+    height: 100vh;
     background: #000000;
     opacity: 0.5;
     z-index: 40;

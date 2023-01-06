@@ -48,6 +48,7 @@
 .highcharts,
 .three{
     background-color: #fff;
+    
     height: 500px;
     border-radius: 0 0 10px 10px;
 }
@@ -58,6 +59,11 @@
 }
 .wrapper{
     border: 0;
+
+    height: 80vh;
+    border-radius: 10px;
+    overflow-y: scroll;
+
 }
 .highlighted {
     border: 3px solid #00ff00;
@@ -80,4 +86,5 @@
     background: #000000;
     opacity: 0.5;
     z-index: 40;
+    cursor: pointer;
 }

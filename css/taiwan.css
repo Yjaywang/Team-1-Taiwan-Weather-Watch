@@ -31,7 +31,8 @@
     position: absolute;
     top: 100px;
     width: 100%;
-    background-color: rgba(64, 83, 101, 0.95);
+    height: 35px;
+    background-color: rgba(64, 83, 101, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;

@@ -2,7 +2,10 @@
 
 This project was developed as part of the WeHelp Bootcamp to experience collaborative development and solve related problems while becoming more familiar with Git operations.  
 The main purpose of this project is to provide weather information for various cities and towns in Taiwan based on the [API](https://opendata.cwb.gov.tw/dist/opendata-swagger.html#/%E6%B0%A3%E5%80%99/get_v1_rest_datastore_C_B0025_001) provided by the Central Weather Bureau.  
-The project uses the GitHub Pages feature to deploy the project online.
+The project uses the GitHub Pages feature to deploy the project online.  
+![GIF1](http://g.recordit.co/dQuQDI8V0i.gif)
+
+![GIF2](http://g.recordit.co/xHmJl3IvAV.gif)
 
 # Features
 

@@ -222,6 +222,10 @@ export async function getDistWeatherData(cityName = "宜蘭縣", distName = "頭
 
         function createThreeHoursData(distName) {
             const wrapper = document.querySelector(".wrapper")
+            const tables = wrapper.querySelectorAll("table");
+            tables.forEach(table => {
+                table.remove();
+            });
             for (let i = 0; i < 8; i++) {
                 const code = `<table class="table">
                         <thead>
@@ -328,6 +332,10 @@ export async function getTownshipWeeklyData(cityName = "宜蘭縣", distName = "
             const firstEndTime = allTownshipWeeklyData[townshipName].firstEndTime
             const weekEl = document.querySelector("#week")
             const wrapperEl = weekEl.querySelector(".wrapper")
+            const tableEls = wrapperEl.querySelectorAll("table");
+            tableEls.forEach(tableEl => {
+                tableEl.remove();
+            });
             let i = 0
             if (firstEndTime.slice(-8) === "06:00:00") {
                 i++

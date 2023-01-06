@@ -18,6 +18,10 @@ export function chartGenerate(city = "台北", dist = "信義區", temperature, 
     let chart = Highcharts.chart("container", {
         chart: {
             zoomType: "xy",
+            height: 600,
+            style: {
+                fontSize: "13px",
+            },
         },
         time: { timezoneOffset: -480 },
         responsive: {
@@ -40,6 +44,9 @@ export function chartGenerate(city = "台北", dist = "信義區", temperature, 
             align: "left",
             y: 5,
             x: 10,
+            style: {
+                fontWeight: "bold",
+            },
         },
         subtitle: {
             text: "Source: 中央氣象局",
@@ -130,6 +137,9 @@ export function chartGenerate(city = "台北", dist = "信義區", temperature, 
                 Highcharts.defaultOptions.legend.backgroundColor || // theme
                 "rgba(255,255,255,0.25)",
             itemDistance: 40,
+            itemStyle: {
+                fontSize: "15px",
+            },
         },
         series: [
             {
@@ -230,6 +240,7 @@ export function tempChartGenerate(city = "台北", dist = "信義區", maxAT, mi
     let chart1 = Highcharts.chart("container1", {
         chart: {
             zoomType: "xy",
+            height: 600,
         },
         time: { timezoneOffset: -480 },
         title: {
@@ -237,6 +248,9 @@ export function tempChartGenerate(city = "台北", dist = "信義區", maxAT, mi
             align: "left",
             y: 5,
             x: 10,
+            style: {
+                fontWeight: "bold",
+            },
         },
         subtitle: {
             text: "Source: 中央氣象局",
@@ -293,6 +307,9 @@ export function tempChartGenerate(city = "台北", dist = "信義區", maxAT, mi
                 Highcharts.defaultOptions.legend.backgroundColor || // theme
                 "rgba(255,255,255,0.25)",
             itemDistance: 40,
+            itemStyle: {
+                fontSize: "15px",
+            },
         },
         series: [
             {

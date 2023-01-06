@@ -1,8 +1,9 @@
 table{
     background-color: #fffcf5;
-    border-radius: 10px;
+    border-radius: 10px 10px 0 0;
     width: 100%;
     table-layout: auto;
+    padding: 10px;
 }
 
 table thead>tr>th>span{
@@ -10,7 +11,9 @@ table thead>tr>th>span{
     border-radius: 50px;
     font-weight: 400;
 }
-
+table thead>tr>th>div{
+    font-weight: 600;
+}
 table tbody th{
     color: #0f838c;
     white-space: nowrap;

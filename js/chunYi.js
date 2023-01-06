@@ -35,8 +35,8 @@ tabs.forEach((tab) => {
 /* 彈出視窗切換 */
 const tab_weeks = document.getElementById("tab_weeks")
 const tab_3hr_table = document.getElementById("tab_3hr_table")
-const tab_body = document.getElementById("tab_curve_other")
-const tab_body1 = document.getElementById("tab_curve_temper")
+const tab_curve_other = document.getElementById("tab_curve_other")
+const tab_curve_temper = document.getElementById("tab_curve_temper")
 const three = document.getElementById("three")
 const week = document.getElementById("week")
 const mainChart = document.getElementById("mainChart")
@@ -59,7 +59,7 @@ tab_3hr_table.addEventListener("click", (e) => {
     }
     three.classList.remove("none")
 })
-tab_body.addEventListener("click", (e) => {
+tab_curve_other.addEventListener("click", (e) => {
     for (let i of popupScreen) {
         if (i !== mainChart) {
             i.classList.add("none")
@@ -68,7 +68,7 @@ tab_body.addEventListener("click", (e) => {
     mainChart.classList.remove("none")
 })
 
-tab_body1.addEventListener("click", (e) => {
+tab_curve_temper.addEventListener("click", (e) => {
     for (let i of popupScreen) {
         if (i !== secondChart) {
             i.classList.add("none")

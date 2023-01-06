@@ -27,8 +27,8 @@
     display: none;
 }
 
-.tab_chart_window_header:hover{
-    background-color:#202020 ;
+.tab_chart_window_header:hover {
+    background-color: #202020;
 }
 
 #tab_3hr_table,
@@ -43,11 +43,10 @@
     color: #00ff00;
 }
 
-
 .highcharts,
-.three{
+.three {
     background-color: #fff;
-    
+
     height: 500px;
     border-radius: 0 0 10px 10px;
 }
@@ -56,13 +55,12 @@
     /* height: calc(100vh - 150px);   根據卷軸大小調整 */
     border-radius: 0 0 10px 10px;
 }
-.wrapper{
+.wrapper {
     border: 0;
 
     height: 80vh;
     border-radius: 10px;
     overflow-y: scroll;
-
 }
 .highlighted {
     border: 3px solid #00ff00;

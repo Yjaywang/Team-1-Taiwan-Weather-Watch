@@ -24,21 +24,6 @@ export function chartGenerate(city = "台北", dist = "信義區", temperature, 
             },
         },
         time: { timezoneOffset: -480 },
-        responsive: {
-            rules: [
-                {
-                    // 當圖表寬度在 768 ~ 1280 之間，就會發生設定變化
-                    condition: {
-                        maxWidth: 1280,
-                        minWidth: 768,
-                    },
-                    condition: {
-                        maxWidth: 768,
-                        minWidth: 360,
-                    },
-                },
-            ],
-        },
         title: {
             text: `${city}${dist}`,
             align: "left",
@@ -64,6 +49,9 @@ export function chartGenerate(city = "台北", dist = "信義區", temperature, 
                 labels: {
                     format: "{value:%b%e}日 {value:%a}",
                     y: 20,
+                },
+                scrollbar: {
+                    enabled: false,
                 },
             },
         ],

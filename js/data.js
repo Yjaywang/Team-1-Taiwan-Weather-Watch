@@ -92,7 +92,6 @@ export async function getCityWeatherData(cityName = "臺北市", time = "1", pop
             allCityWeatherData[i.locationName] = cityWeatherData
         }
         const marqueeContent = document.getElementById("marqueeContent")
-        console.log(allCityWeatherData[`${cityName}`].weatherDescription)
         let weatherDescription = allCityWeatherData[`${cityName}`].weatherDescription
         marqueeContent.innerHTML = weatherDescription
         return data
